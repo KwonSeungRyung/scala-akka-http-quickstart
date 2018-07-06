@@ -12,7 +12,7 @@ class ServiceSpec extends FlatSpec with Matchers with ScalatestRouteTest with Se
   override def config = testConfig
   override val logger = NoLogging
   val healthCheckReply = HealthStatus("UP");
-  val helloWorld = Reply("Hello World");
+  val hiMsg = Reply("Hi");
 
   "Service" should "respond to health check" in {
     Get(s"/health") ~> routes ~> check {
@@ -26,7 +26,7 @@ class ServiceSpec extends FlatSpec with Matchers with ScalatestRouteTest with Se
     Get(s"/") ~> routes ~> check {
       status shouldBe OK
       contentType shouldBe `application/json`
-      responseAs[Reply] shouldBe helloWorld
+      responseAs[Reply] shouldBe hiMsg
     }
   }
 }
